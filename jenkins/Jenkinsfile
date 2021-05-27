@@ -12,7 +12,13 @@ pipeline {
             steps {
                 sh 'mvn test'
             }
-            stage('Generate HTML report') {
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+         stage('Generate HTML report') {
                 cucumber buildStatus: 'UNSTABLE',
                     reportTitle: 'My report',
                     fileIncludePattern: '**/*.json',
@@ -24,11 +30,5 @@ pipeline {
                     ]
                 ]
     }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
-        }
     }
 }
