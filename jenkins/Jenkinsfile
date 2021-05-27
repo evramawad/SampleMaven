@@ -16,7 +16,6 @@ pipeline {
                 always {
                     junit 'target/surefire-reports/*.xml'
                         cucumber fileIncludePattern: 'reports.json'
-                        build job: 'cucumber-report'
                 }
             }
         }
