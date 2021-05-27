@@ -15,6 +15,9 @@ pipeline {
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'
+			sh "cp reports.json $WORKSPACE"
+                        cucumber fileIncludePattern: 'reports.json'
+                        build job: 'cucumber-report'
                 }
             }
         }
