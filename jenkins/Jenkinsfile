@@ -16,6 +16,5 @@ pipeline {
 			cucumber --format json -o ${workspace}/cucumber.json
 		}
         }
-    {
     }
 }
