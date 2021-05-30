@@ -14,7 +14,7 @@ pipeline {
             }
 		post {
    		 always {
-			 cucumber fileIncludePattern: 'cucumber.json'
+			 cucumber  jsonReportDirectory: '/var/lib/jenkins/workspace/Maven_CICD'
     }
 }
 }
