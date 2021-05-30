@@ -14,7 +14,7 @@ pipeline {
             }
 		post {
    		 always {
-			 cucumber '--format json -o ${workspace}/cucumber.json'
+			 cucumber jsonReportDirectory: '${workspace}/', fileIncludePattern: 'cucumber.json'
     }
 }
 }
