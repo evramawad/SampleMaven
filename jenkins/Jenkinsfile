@@ -12,12 +12,32 @@ pipeline {
             steps {
                 sh 'mvn test'
             }
-		post{
-		always {
-			sh "cp '**/*.json' ${workspace}"
-			cucumber '--format json -o reports.json'
-		}
-		}
+  post {
+  	     failure {
+
+  	      echo "Test failed"
+                      cucumber buildStatus: 'FAIL',
+                                   failedFeaturesNumber: 1,
+                                   failedScenariosNumber: 1,
+                                   skippedStepsNumber: 1,
+                                   failedStepsNumber: 1,
+                                   fileIncludePattern: '**/*.json',
+                                   sortingMethod: 'ALPHABETICAL'
+
+  	     }
+
+  	     	 success {
+
+         	 echo "Test succeeded"
+                     cucumber buildStatus: 'SUCCESS',
+                                            failedFeaturesNumber: 0,
+                                            failedScenariosNumber: 0,
+                                            skippedStepsNumber: 0,
+                                            failedStepsNumber: 0,
+                                            fileIncludePattern: '**/*.json',
+                                            sortingMethod: 'ALPHABETICAL'
+
+}
         }
     }
 }
