@@ -12,8 +12,10 @@ pipeline {
             steps {
                 sh 'mvn test'
             }
+		post{
 		always {
 			cucumber '--format json -o ${workspace}/cucumber.json'
+		}
 		}
         }
     }
