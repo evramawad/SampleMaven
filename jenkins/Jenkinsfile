@@ -13,7 +13,7 @@ pipeline {
                 sh 'mvn test'
             }
 		always {
-			cucumber --format json -o ${workspace}/cucumber.json
+			cucumber '--format json -o ${workspace}/cucumber.json'
 		}
         }
     }
