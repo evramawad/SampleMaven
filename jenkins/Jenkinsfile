@@ -14,7 +14,7 @@ pipeline {
             }
 		post {
    		 always {
-		     cucumber --format json -o cucumber.json
+		     cucumber '--format json -o cucumber.json'
 			 sh "cp cucumber.json ${workspace}"
     }
 }
