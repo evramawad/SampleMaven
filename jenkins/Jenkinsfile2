@@ -12,11 +12,12 @@ pipeline {
             steps {
                 sh 'mvn test'
             }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
+		finally {
+                        // generate cucumber reports in both Test Pass/Fail scenario
+                        sh "cd $WORKSPACE/cucumber-reports && cp reports.json $WORKSPACE"
+                        cucumber fileIncludePattern: 'cucumber-trends.json'
+                        build job: 'cucumber-report'
         }
+	}
     }
 }
