@@ -15,14 +15,9 @@ pipeline {
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'
-                        cucumber fileIncludePattern: 'reports.json'
+                        cucumber  --format json -o cucumber.json
                 }
             }
         }
-	  stage('Generate HTML report') {
-		  steps {
-			cucumber  --format json -o cucumber.json
-		  }
-    }
     }
 }
