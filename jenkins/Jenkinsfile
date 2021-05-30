@@ -15,7 +15,7 @@ pipeline {
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'
-                    sh "cucumber  --format json -o cucumber.json"
+                    cucumber  '--format json -o cucumber.json'
                 }
             }
         }
